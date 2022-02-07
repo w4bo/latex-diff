@@ -1,0 +1,5 @@
+.env
+new/
+old/
+diff/
+.ssh

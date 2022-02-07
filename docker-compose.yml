@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+
+  latex:
+    hostname: latex
+    container_name: latex
+    build: .
+    volumes:
+      - ./:/data
+    command: ["/bin/bash", "/data/diff.sh"]
