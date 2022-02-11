@@ -3,4 +3,5 @@ new/
 old/
 diff/
 diff-all/
+generated/
 .ssh
