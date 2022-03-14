@@ -1,4 +1,5 @@
 #!/bin/bash
+lacheck $1.tex >> $1.lacheck.txt
 pdflatex -file-line-error -interaction=batchmode $1.tex || true
 bibtex $1.aux || true
 pdflatex -file-line-error -interaction=batchmode $1.tex || true

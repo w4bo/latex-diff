@@ -20,13 +20,14 @@ cd /old
 git checkout $COMMIT
 sh /data/compile.sh main
 cp main.pdf /data/generated/main-$COMMIT.pdf
+# cp main.lacheck.txt /data/generated/main-$COMMIT.lacheck.txt
 
 cd -
 rm -rf /new
 git clone $REPO /new
 cd /new
 sh /data/compile.sh main
-cp main.pdf /data/generated/main.pdf
+cp main.lacheck.txt /data/generated/main.lacheck.txt
 
 rm -rf /diff
 mkdir /diff
@@ -47,6 +48,7 @@ echo "\n\n\n"
 ls -las
 sh /data/compile.sh diff
 cp diff.pdf /data/generated/diff-$COMMIT.pdf
+# cp diff.lacheck.txt /data/generated/diff-$COMMIT.lacheck.txt
 
 cd /diff-all
 echo "\n\n\n"
