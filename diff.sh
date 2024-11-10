@@ -16,11 +16,11 @@ then
 fi
 
 rm -rf /old
-git clone $REPO /old
+git clone $REPO_OLD /old
 cd /old
-git checkout $COMMIT
-sh /data/compile.sh $MAINFILE
-cp $MAINFILE.pdf /data/generated/$MAINFILE-$COMMIT.pdf
+git checkout $COMMIT_OLD
+sh /data/compile.sh $MAINFILE_OLD
+cp $MAINFILE_OLD.pdf /data/generated/$MAINFILE_OLD-$COMMIT_OLD.pdf
 # cp $MAINFILE.lacheck.txt /data/generated/$MAINFILE-$COMMIT.lacheck.txt
 
 cd -
@@ -35,25 +35,25 @@ rm -rf /diff
 mkdir /diff
 cp -R /new/* /diff
 
-latexdiff --preamble=/data/preamble.tex --flatten /old/$MAINFILE.tex /new/$MAINFILE.tex > /diff/diff.tex
+latexdiff --preamble=/data/preamble.tex --flatten /old/$MAINFILE_OLD.tex /new/$MAINFILE.tex > /diff/diff.tex
 # latexdiff /old/references.bib /new/references.bib > /diff/references.bib
 
 rm -rf /diff-all
 mkdir /diff-all
 cp -R /new/* /diff-all
 
-latexdiff --flatten /old/$MAINFILE.tex /new/$MAINFILE.tex > /diff-all/diff-all.tex
+latexdiff --flatten /old/$MAINFILE_OLD.tex /new/$MAINFILE.tex > /diff-all/diff-all.tex
 # latexdiff /old/references.bib /new/references.bib > /diff-all/references.bib
 
 cd /diff
 echo "\n\n\n"
 ls -las
 sh /data/compile.sh diff
-cp diff.pdf /data/generated/diff-$COMMIT.pdf
+cp diff.pdf /data/generated/diff-$COMMIT_OLD.pdf
 # cp diff.lacheck.txt /data/generated/diff-$COMMIT.lacheck.txt
 
 cd /diff-all
 echo "\n\n\n"
 ls -las
 sh /data/compile.sh diff-all
-cp diff-all.pdf /data/generated/diff-all-$COMMIT.pdf
+cp diff-all.pdf /data/generated/diff-all-$COMMIT_OLD.pdf
