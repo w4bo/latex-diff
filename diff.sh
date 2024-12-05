@@ -49,15 +49,13 @@ echo "\n\n\n"
 ls -las
 sed -i -e 's/\href//g' diff.tex
 sh /data/compile.sh diff
-cp diff.log /data/generated/diff.log
 cp diff.pdf /data/generated/diff-$COMMIT_OLD.pdf
-cp diff.lacheck.txt /data/generated/diff.lacheck.txt
 mkdir /data/generated/diff
 cp * /data/generated/diff
 
 cd /diff-all
 echo "\n\n\n"
 ls -las
-sed -i -e 's/\href//g' diff.tex
+sed -i -e 's/\href//g' diff-all.tex
 sh /data/compile.sh diff-all
 cp diff-all.pdf /data/generated/diff-all-$COMMIT_OLD.pdf
