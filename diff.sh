@@ -1,5 +1,5 @@
 #!/bin/bash
-set -exo
+set -xo
 cd /data
 
 chmod +x *.sh
@@ -21,7 +21,6 @@ cd /old
 git checkout $COMMIT_OLD
 sh /data/compile.sh $MAINFILE_OLD
 cp $MAINFILE_OLD.pdf /data/generated/$MAINFILE_OLD-$COMMIT_OLD.pdf
-# cp $MAINFILE.lacheck.txt /data/generated/$MAINFILE-$COMMIT.lacheck.txt
 
 cd -
 rm -rf /new
@@ -48,12 +47,17 @@ latexdiff --flatten /old/$MAINFILE_OLD.tex /new/$MAINFILE.tex > /diff-all/diff-a
 cd /diff
 echo "\n\n\n"
 ls -las
+sed -i -e 's/\href//g' diff.tex
 sh /data/compile.sh diff
+cp diff.log /data/generated/diff.log
 cp diff.pdf /data/generated/diff-$COMMIT_OLD.pdf
-# cp diff.lacheck.txt /data/generated/diff-$COMMIT.lacheck.txt
+cp diff.lacheck.txt /data/generated/diff.lacheck.txt
+mkdir /data/generated/diff
+cp * /data/generated/diff
 
 cd /diff-all
 echo "\n\n\n"
 ls -las
+sed -i -e 's/\href//g' diff.tex
 sh /data/compile.sh diff-all
 cp diff-all.pdf /data/generated/diff-all-$COMMIT_OLD.pdf
